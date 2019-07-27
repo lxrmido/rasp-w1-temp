@@ -35,7 +35,7 @@ function report () {
     };
     console.log('Reporting at ' + new Date().toString())
     request(options, function (error, response, body) {
-        if (err) {
+        if (error) {
             console.log('Reported failed:' + error);
         } else {
             console.log('Reported: ' + body);
