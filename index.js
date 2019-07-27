@@ -33,10 +33,15 @@ function report () {
         json: true,
         body: JSON.parse(body)
     };
+    console.log('Reporting at ' + new Date().toString())
     request(options, function (error, response, body) {
-        console.log('Report at ' + new Date().toString())
         if (err) {
-            console.log('Report failed:' + error);
+            console.log('Reported failed:' + error);
+        } else {
+            console.log('Reported: ' + body);
         }
+        setTimeout(report, reportInterval);
     });
 }
+
+report();
