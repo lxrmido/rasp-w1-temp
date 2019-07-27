@@ -38,7 +38,7 @@ function report () {
         if (error) {
             console.log('Reported failed:' + error);
         } else {
-            console.log('Reported: ' + body);
+            console.log('Reported: ' + JSON.stringify(body));
         }
         setTimeout(report, reportInterval);
     });
