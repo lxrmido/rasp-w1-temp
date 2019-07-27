@@ -24,6 +24,7 @@ if (!deviceFile) {
 }
 
 function report () {
+    var timeStart = new Date().getTime();
     var fileContent = fs.readFileSync(deviceFile).toString();
     var temp = fileContent.match(/t=(\d+)/)[1];
     var body = reportFormat.replace('${value}', temp);
@@ -33,10 +34,11 @@ function report () {
         json: true,
         body: JSON.parse(body)
     };
-    var timeStart = new Date().getTime();
+    console.log('Reading cost: ' + (new Date().getTime() - timeStart) + 'ms');
+    timeStart = new Date().getTime();
     console.log('Reporting at ' + new Date().toString())
     request(options, function (error, response, body) {
-        console.log('Time cost: ' + (new Date().getTime() - timeStart) + 'ms');
+        console.log('Reporting cost: ' + (new Date().getTime() - timeStart) + 'ms');
         if (error) {
             console.log('Reported failed:' + error);
         } else {
