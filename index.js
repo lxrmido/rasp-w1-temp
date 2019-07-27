@@ -33,12 +33,14 @@ function report () {
         json: true,
         body: JSON.parse(body)
     };
+    var timeStart = new Date().getTime();
     console.log('Reporting at ' + new Date().toString())
     request(options, function (error, response, body) {
+        console.log('Time cost: ' + (new Date().getTime() - timeStart) + 'ms');
         if (error) {
             console.log('Reported failed:' + error);
         } else {
-            console.log('Reported: ' + JSON.stringify(body));
+            console.log('Reported result: ' + JSON.stringify(body));
         }
         setTimeout(report, reportInterval);
     });
